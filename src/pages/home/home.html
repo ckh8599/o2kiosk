@@ -1,14 +1,316 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content>
+  <ion-grid no-padding class="layout-grid">
+    <ion-row>
+      <ion-col col-9>
+        
+        <ion-grid no-padding class="main-grid">
+          <ion-row class="main-grid-header" style="height: 15%;">
+            <ion-col>
+              <div>COFFEE ESPERANTO</div>
+            </ion-col>
+          </ion-row>
+          <ion-row class="main-grid-content">
+            <ion-col>
+              
+              <ion-segment [(ngModel)]="tabs">
+                <ion-segment-button value="COF">
+                  커피
+                </ion-segment-button>
+                <ion-segment-button value="BEB">
+                  음료
+                </ion-segment-button>
+                <ion-segment-button value="TEA">
+                  TEA
+                </ion-segment-button>
+                <ion-segment-button value="DEG">
+                  디저트
+                </ion-segment-button>
+              </ion-segment>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+              
+              <div [ngSwitch]="tabs" class="menu-scroll-div">
+                  
+                <div *ngSwitchCase="'COF'">
+                    <!--<ion-scroll scrollY="true">-->
+                    <ion-grid class="menu-list">
+                       
+                      <ion-row>
+                        <ion-col>
+                          <div class="menu-div" (onclick)="selectMenu($event);">
+                            <div>
+                              <img src="/assets/brand/PAS1.jpg" />
+                            </div>
+                            <div class="menu-detail">
+                              <div class="menu-title">아메리카노</div>
+                              <div class="menu-price">3,000원</div>
+                            </div>
+                          </div>
+                        </ion-col>
+                        <ion-col>
+                          <div class="menu-div" (onclick)="selectMenu($event);">
+                            <img src="/assets/brand/PAS2.jpg" />
+                            <div class="menu-detail">
+                              <div class="menu-title">카라멜마키아또</div>
+                              <div class="menu-price">4,000원</div>
+                            </div>
+                          </div>
+                        </ion-col>
+                        <ion-col>
+                          <div class="menu-div" (onclick)="selectMenu($event);">
+                            <img src="/assets/brand/PAS1.jpg" />
+                            <div class="menu-detail">
+                              <div class="menu-title">블루베리카떼</div>
+                              <div class="menu-price">5,000원</div>
+                            </div>
+                          </div>
+                        </ion-col>
+                        <ion-col>
+                          <div class="menu-div" (onclick)="selectMenu($event);">
+                            <img src="/assets/brand/PAS2.jpg" />
+                            <div class="menu-detail">
+                              <div class="menu-title">레모네이드</div>
+                              <div class="menu-price">4,500원</div>
+                            </div>
+                          </div>
+                        </ion-col>
+                      </ion-row>
+
+                      <ion-row>
+                        <ion-col>
+                          <div class="menu-div" (onclick)="selectMenu($event);">
+                            <img src="/assets/brand/PAS1.jpg" />
+                            <div class="menu-detail">
+                              <div class="menu-title">HOT.로마노</div>
+                              <div class="menu-price">4,500원</div>
+                            </div>
+                          </div>
+                        </ion-col>
+                        <ion-col>
+                            <div class="menu-div">
+                              <img src="/assets/brand/PAS2.jpg" />
+                              <div>sdf</div>
+                            </div>
+                        </ion-col>
+                        <ion-col>
+                            <div class="menu-div">
+                              <img src="/assets/brand/PAS3.jpg" />
+                              <div>sdf</div>
+                            </div>
+                        </ion-col>
+                        <ion-col>
+                            <div class="menu-div">
+                              <img src="/assets/brand/PAS4.jpg" />
+                              <div>sdf</div>
+                            </div>
+                        </ion-col>
+                      </ion-row>
+
+                      <ion-row>
+                        <ion-col>
+                          <div class="menu-div" (onclick)="selectMenu($event);">
+                            <img src="/assets/brand/PAS1.jpg" />
+                            <div class="menu-detail">
+                              <div class="menu-title">HOT.로마노</div>
+                              <div class="menu-price">4,500원</div>
+                            </div>
+                          </div>
+                        </ion-col>
+                        <ion-col>
+                            <div class="menu-div">
+                              <img src="/assets/brand/PAS2.jpg" />
+                              <div>sdf</div>
+                            </div>
+                        </ion-col>
+                        <ion-col>
+                            <div class="menu-div">
+                              <img src="/assets/brand/PAS3.jpg" />
+                              <div>sdf</div>
+                            </div>
+                        </ion-col>
+                        <ion-col>
+                            <div class="menu-div">
+                              <img src="/assets/brand/PAS4.jpg" />
+                              <div>sdf</div>
+                            </div>
+                        </ion-col>
+                      </ion-row>
+
+                      <ion-row>
+                        <ion-col>
+                          <div class="menu-div" (onclick)="selectMenu($event);">
+                            <img src="/assets/brand/PAS1.jpg" />
+                            <div class="menu-detail">
+                              <div class="menu-title">HOT.로마노</div>
+                              <div class="menu-price">4,500원</div>
+                            </div>
+                          </div>
+                        </ion-col>
+                        <ion-col>
+                            <div class="menu-div">
+                              <img src="/assets/brand/PAS2.jpg" />
+                              <div>sdf</div>
+                            </div>
+                        </ion-col>
+                        <ion-col>
+                            <div class="menu-div">
+                              <img src="/assets/brand/PAS3.jpg" />
+                              <div>sdf</div>
+                            </div>
+                        </ion-col>
+                        <ion-col>
+                            <div class="menu-div">
+                              <img src="/assets/brand/PAS4.jpg" />
+                              <div>sdf</div>
+                            </div>
+                        </ion-col>
+                      </ion-row>
+
+                    </ion-grid>
+                  <!--</ion-scroll>-->
+                </div>
+              
+              </div>
+              
+
+              <div [ngSwitch]="tabs" class="menu-scroll-div">
+                <div *ngSwitchCase="'BEB'">
+                    <ion-grid class="menu-list">
+                       
+                        <ion-row>
+                          <ion-col>
+                            <div class="menu-div" (onclick)="selectMenu($event);">
+                              <div>
+                                <img src="/assets/brand/PAS1.jpg" />
+                              </div>
+                              <div class="menu-detail">
+                                <div class="menu-title">대추차</div>
+                                <div class="menu-price">3,000원</div>
+                              </div>
+                            </div>
+                          </ion-col>
+                          <ion-col>
+                            <div class="menu-div" (onclick)="selectMenu($event);">
+                              <img src="/assets/brand/PAS2.jpg" />
+                              <div class="menu-detail">
+                                <div class="menu-title">세계최고 설록차</div>
+                                <div class="menu-price">4,000원</div>
+                              </div>
+                            </div>
+                          </ion-col>
+                          <ion-col>
+                            <div class="menu-div" (onclick)="selectMenu($event);">
+                              <img src="/assets/brand/PAS1.jpg" />
+                              <div class="menu-detail">
+                                <div class="menu-title">이달의 인기차</div>
+                                <div class="menu-price">5,000원</div>
+                              </div>
+                            </div>
+                          </ion-col>
+                          <ion-col>
+                            <div class="menu-div" (onclick)="selectMenu($event);">
+                              <img src="/assets/brand/PAS2.jpg" />
+                              <div class="menu-detail">
+                                <div class="menu-title">차차차</div>
+                                <div class="menu-price">4,500원</div>
+                              </div>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+  
+                      </ion-grid>
+                </div>
+              </div>
+
+              <div [ngSwitch]="tabs">
+                <div *ngSwitchCase="'TEA'">
+                
+                </div>
+              </div>
+
+              <div [ngSwitch]="tabs">
+                <div *ngSwitchCase="'DEG'">
+                
+                </div>
+              </div>
+
+              
+            </ion-col>
+          </ion-row>
+
+        </ion-grid>
+        
+      </ion-col>
+      <ion-col>
+        <ion-grid no-padding class="side-grid">
+          <ion-row class="side-grid-seleted">
+            <ion-col>
+
+              <div class="side-grid-selected-item">
+                <div class="menu-data">
+                  <div class="title">
+                    HOT. 우도 올데이 땅콩 라테
+                  </div>
+                  <div class="pmp">
+                      <ion-icon md="md-add-circle" color="side-add-button"></ion-icon>
+                      <span class="cnt">1</span>
+                      <ion-icon md="md-remove-circle" color="side-add-button"></ion-icon>
+                      <span class="price">5,000원</span>
+                  </div>
+                </div>
+                <div class="close"><ion-icon md="md-close" color="light"></ion-icon></div>
+              </div>
+
+              <div class="side-grid-selected-item">
+                <div class="menu-data">
+                  <div class="title">
+                    HOT. 우도 올데이 땅콩 라테
+                  </div>
+                  <div class="pmp">
+                      <ion-icon md="md-add-circle" color="side-add-button"></ion-icon>
+                      <span class="cnt">1</span>
+                      <ion-icon md="md-remove-circle" color="side-add-button"></ion-icon>
+                      <span class="price">5,000원</span>
+                  </div>
+                </div>
+                <div class="close"><ion-icon md="md-close" color="light"></ion-icon></div>
+              </div>
+
+              <div class="side-grid-selected-item">
+                <div class="menu-data">
+                  <div class="title">
+                    HOT. 우도 올데이 땅콩 라테
+                  </div>
+                  <div class="pmp">
+                      <ion-icon md="md-add-circle" color="side-add-button"></ion-icon>
+                      <span class="cnt">1</span>
+                      <ion-icon md="md-remove-circle" color="side-add-button"></ion-icon>
+                      <span class="price">5,000원</span>
+                  </div>
+                </div>
+                <div class="close"><ion-icon md="md-close" color="light"></ion-icon></div>
+              </div>
+
+            </ion-col>
+          </ion-row>
+          <ion-row class="side-grid-button">
+            <ion-col>
+              <div class="side-grid-menu">
+                <div class="side-grid-menu-text">총 주문수량</div>
+                <div class="side-grid-menu-cp"><span>8</span>개</div>
+                <div class="side-grid-menu-text">총 주문금액</div>
+                <div class="side-grid-menu-cp"><span>14,000</span>원</div>
+              </div>
+              <div class="side-cancel-button">
+                  <button ion-button color="side-cancel-button">전체취소</button>  
+              </div>
+              <div class="side-buttom-button">
+                  <button ion-button color="side-buttom-button">신용카드<br/>결제</button>
+                  <button ion-button color="side-buttom-button">이비카드<br/>결제</button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

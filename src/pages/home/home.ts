@@ -11,4 +11,8 @@ export class HomePage {
 
   }
 
+  selectMenu(eve){
+    console.log("sdfsdf");
+  }
+
 }

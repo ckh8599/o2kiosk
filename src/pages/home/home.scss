@@ -1,3 +1,78 @@
-page-home {
 
+.layout-grid{ height: 100vh; }
+.layout-grid ion-row { height: 100%; }
+.main-grid { min-height: 100%; }
+.side-grid { min-height: 100%; }
+.main-grid-header { background-color: #00A9BB; color: #FFFFFF; text-align: center; vertical-align:middle;}
+.main-grid-header div { padding-top:20px; font-size: 30px; }
+.main-grid-content { background-color: #FFFFFF}
+
+ion-segment {
+    background-color: #007A93;
+}
+.segment-md .segment-button {
+    font-size: 1.9rem;
+    background-color: #00A9BB;
+    color:#FFFFFF;
+    font-weight: bold;
+    margin:16px 10px 0px 10px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom: 0px;
+    height: 50px;
+    padding-top: 8px;
+}
+.toolbar-background-md{
+    background:white;
+}
+.segment-button.segment-activated{
+    font-size: 1.9rem;
+    background-color: #FFFFFF;
+    color:#007A93;
+    margin:16px 10px 0px 10px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom: 0px;
+    
+}
+.menu-scroll-div { overflow-y: scroll!important; overflow-x: hidden; }
+.menu-list ion-row { height: 10%; }
+.menu-list .menu-div { height: 100%; border:1px; border-style: solid; border-color: #D1D6DA; border-radius: 5px; text-align: center; }
+.menu-list .select { border:3px; border-style: solid; border-color: #FE0074; }
+.menu-list div img { border-radius: 5px; }
+.menu-list .menu-detail { border-radius: 5px; }
+.menu-list .menu-detail div { padding: 7px 2px; font-weight: bold; background-color: white;}
+.menu-list .menu-detail .menu-title { color: #343434; font-size: 16px; }
+.menu-list .menu-detail .menu-price { color: #FE0074; font-size: 16px; }
+
+.side-grid-seleted { background-color: #D1D6DA; }
+.side-grid-button { background-color: #007A93; }
+
+.side-cancel-button { text-align: center; }
+.side-cancel-button button { padding:30px; margin: 2%; width: 91%; font-size: 17px; font-weight: bold; letter-spacing:2px }
+.side-buttom-button { text-align: center; }
+.side-buttom-button button { padding:42px; margin: 10px 6px; width: 42%;  font-size: 16px; line-height:132%; font-weight: bold;}
+
+.side-grid-menu { background-color: #25292B; border-radius: 5px; margin: 4%; padding: 10px; text-align-last: right}
+.side-grid-menu div { padding: 6px; font-size: 17px; font-weight: bold;}
+.side-grid-menu-text{ color: #FFFFFF; float:left; }
+.side-grid-menu-cp { color: #FE0074; }
+
+.side-grid-seleted { background-color: #D1D6DA; }
+
+.side-grid-selected-item { background-color:white; margin: 10px; border-radius: 5px; height:120px;}
+
+.side-grid-selected-item .menu-data { float:left; padding:10px; width:85%; }
+.side-grid-selected-item .menu-data .title { color: #007A93; padding-left: 5px; padding-bottom: 26px; font-size: 18px; font-weight: bold; }
+.side-grid-selected-item .menu-data .pmp { color: #007A93;  padding-left: 5px; font-size: 22px; font-weight: bold;}
+.side-grid-selected-item .menu-data .pmp .cnt { font-size: 26px; padding-right: 10px;}
+.side-grid-selected-item .menu-data .pmp ion-icon { font-size: 35px; padding-right: 10px;}
+.side-grid-selected-item .menu-data .pmp .price { color: #FE0074; float:right; }
+
+.side-grid-selected-item .close { 
+    text-align: center; 
+    //background-color: #FE0074; 
+    //height: 100%; 
+    border-top-right-radius: 5px; border-bottom-right-radius: 5px; 
+    font-size: 22px;
 }
