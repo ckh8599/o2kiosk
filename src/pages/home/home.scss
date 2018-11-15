@@ -35,7 +35,9 @@ ion-segment {
     border-bottom: 0px;
     
 }
-.menu-scroll-div { overflow-y: scroll!important; overflow-x: hidden; }
+.menu-scroll-div { 
+    //overflow-y: scroll!important; overflow-x: hidden; 
+}
 .menu-list ion-row { height: 10%; }
 .menu-list .menu-div { height: 100%; border:1px; border-style: solid; border-color: #D1D6DA; border-radius: 5px; text-align: center; }
 .menu-list .select { border:3px; border-style: solid; border-color: #FE0074; }
@@ -43,7 +45,7 @@ ion-segment {
 .menu-list .menu-detail { border-radius: 5px; }
 .menu-list .menu-detail div { padding: 7px 2px; font-weight: bold; background-color: white;}
 .menu-list .menu-detail .menu-title { color: #343434; font-size: 16px; }
-.menu-list .menu-detail .menu-price { color: #FE0074; font-size: 16px; }
+.menu-list .menu-detail .menu-price { color: #FE0074; font-size: 16px; border-radius: 6px; }
 
 .side-grid-seleted { background-color: #D1D6DA; }
 .side-grid-button { background-color: #007A93; }

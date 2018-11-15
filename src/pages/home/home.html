@@ -31,142 +31,23 @@
               <div [ngSwitch]="tabs" class="menu-scroll-div">
                   
                 <div *ngSwitchCase="'COF'">
-                    <!--<ion-scroll scrollY="true">-->
-                    <ion-grid class="menu-list">
-                       
-                      <ion-row>
-                        <ion-col>
-                          <div class="menu-div" (onclick)="selectMenu($event);">
-                            <div>
-                              <img src="/assets/brand/PAS1.jpg" />
-                            </div>
-                            <div class="menu-detail">
-                              <div class="menu-title">아메리카노</div>
-                              <div class="menu-price">3,000원</div>
-                            </div>
+                  <ion-grid class="menu-list">
+                      
+                    <ion-row>
+                      <ion-col *ngFor="let item of items">
+                        <div *ngIf="item.kind === 'COF'" class="menu-div {{item.select}}" (click)="selectMenu(item);">
+                          <div>
+                            <img src="{{item.img}}" />
                           </div>
-                        </ion-col>
-                        <ion-col>
-                          <div class="menu-div" (onclick)="selectMenu($event);">
-                            <img src="/assets/brand/PAS2.jpg" />
-                            <div class="menu-detail">
-                              <div class="menu-title">카라멜마키아또</div>
-                              <div class="menu-price">4,000원</div>
-                            </div>
+                          <div class="menu-detail">
+                            <div class="menu-title">{{item.title}}</div>
+                            <div class="menu-price">{{item.price}}원</div>
                           </div>
-                        </ion-col>
-                        <ion-col>
-                          <div class="menu-div" (onclick)="selectMenu($event);">
-                            <img src="/assets/brand/PAS1.jpg" />
-                            <div class="menu-detail">
-                              <div class="menu-title">블루베리카떼</div>
-                              <div class="menu-price">5,000원</div>
-                            </div>
-                          </div>
-                        </ion-col>
-                        <ion-col>
-                          <div class="menu-div" (onclick)="selectMenu($event);">
-                            <img src="/assets/brand/PAS2.jpg" />
-                            <div class="menu-detail">
-                              <div class="menu-title">레모네이드</div>
-                              <div class="menu-price">4,500원</div>
-                            </div>
-                          </div>
-                        </ion-col>
-                      </ion-row>
+                        </div>
+                      </ion-col>
+                    </ion-row>
 
-                      <ion-row>
-                        <ion-col>
-                          <div class="menu-div" (onclick)="selectMenu($event);">
-                            <img src="/assets/brand/PAS1.jpg" />
-                            <div class="menu-detail">
-                              <div class="menu-title">HOT.로마노</div>
-                              <div class="menu-price">4,500원</div>
-                            </div>
-                          </div>
-                        </ion-col>
-                        <ion-col>
-                            <div class="menu-div">
-                              <img src="/assets/brand/PAS2.jpg" />
-                              <div>sdf</div>
-                            </div>
-                        </ion-col>
-                        <ion-col>
-                            <div class="menu-div">
-                              <img src="/assets/brand/PAS3.jpg" />
-                              <div>sdf</div>
-                            </div>
-                        </ion-col>
-                        <ion-col>
-                            <div class="menu-div">
-                              <img src="/assets/brand/PAS4.jpg" />
-                              <div>sdf</div>
-                            </div>
-                        </ion-col>
-                      </ion-row>
-
-                      <ion-row>
-                        <ion-col>
-                          <div class="menu-div" (onclick)="selectMenu($event);">
-                            <img src="/assets/brand/PAS1.jpg" />
-                            <div class="menu-detail">
-                              <div class="menu-title">HOT.로마노</div>
-                              <div class="menu-price">4,500원</div>
-                            </div>
-                          </div>
-                        </ion-col>
-                        <ion-col>
-                            <div class="menu-div">
-                              <img src="/assets/brand/PAS2.jpg" />
-                              <div>sdf</div>
-                            </div>
-                        </ion-col>
-                        <ion-col>
-                            <div class="menu-div">
-                              <img src="/assets/brand/PAS3.jpg" />
-                              <div>sdf</div>
-                            </div>
-                        </ion-col>
-                        <ion-col>
-                            <div class="menu-div">
-                              <img src="/assets/brand/PAS4.jpg" />
-                              <div>sdf</div>
-                            </div>
-                        </ion-col>
-                      </ion-row>
-
-                      <ion-row>
-                        <ion-col>
-                          <div class="menu-div" (onclick)="selectMenu($event);">
-                            <img src="/assets/brand/PAS1.jpg" />
-                            <div class="menu-detail">
-                              <div class="menu-title">HOT.로마노</div>
-                              <div class="menu-price">4,500원</div>
-                            </div>
-                          </div>
-                        </ion-col>
-                        <ion-col>
-                            <div class="menu-div">
-                              <img src="/assets/brand/PAS2.jpg" />
-                              <div>sdf</div>
-                            </div>
-                        </ion-col>
-                        <ion-col>
-                            <div class="menu-div">
-                              <img src="/assets/brand/PAS3.jpg" />
-                              <div>sdf</div>
-                            </div>
-                        </ion-col>
-                        <ion-col>
-                            <div class="menu-div">
-                              <img src="/assets/brand/PAS4.jpg" />
-                              <div>sdf</div>
-                            </div>
-                        </ion-col>
-                      </ion-row>
-
-                    </ion-grid>
-                  <!--</ion-scroll>-->
+                  </ion-grid>
                 </div>
               
               </div>
@@ -177,41 +58,14 @@
                     <ion-grid class="menu-list">
                        
                         <ion-row>
-                          <ion-col>
-                            <div class="menu-div" (onclick)="selectMenu($event);">
+                          <ion-col *ngFor="let item of items">
+                            <div *ngIf="item.kind === 'BEB'" class="menu-div {{item.select}}" (click)="selectMenu(item);">
                               <div>
-                                <img src="/assets/brand/PAS1.jpg" />
+                                <img src="{{item.img}}" />
                               </div>
                               <div class="menu-detail">
-                                <div class="menu-title">대추차</div>
-                                <div class="menu-price">3,000원</div>
-                              </div>
-                            </div>
-                          </ion-col>
-                          <ion-col>
-                            <div class="menu-div" (onclick)="selectMenu($event);">
-                              <img src="/assets/brand/PAS2.jpg" />
-                              <div class="menu-detail">
-                                <div class="menu-title">세계최고 설록차</div>
-                                <div class="menu-price">4,000원</div>
-                              </div>
-                            </div>
-                          </ion-col>
-                          <ion-col>
-                            <div class="menu-div" (onclick)="selectMenu($event);">
-                              <img src="/assets/brand/PAS1.jpg" />
-                              <div class="menu-detail">
-                                <div class="menu-title">이달의 인기차</div>
-                                <div class="menu-price">5,000원</div>
-                              </div>
-                            </div>
-                          </ion-col>
-                          <ion-col>
-                            <div class="menu-div" (onclick)="selectMenu($event);">
-                              <img src="/assets/brand/PAS2.jpg" />
-                              <div class="menu-detail">
-                                <div class="menu-title">차차차</div>
-                                <div class="menu-price">4,500원</div>
+                                <div class="menu-title">{{item.title}}</div>
+                                <div class="menu-price">{{item.price}}원</div>
                               </div>
                             </div>
                           </ion-col>
@@ -245,49 +99,19 @@
           <ion-row class="side-grid-seleted">
             <ion-col>
 
-              <div class="side-grid-selected-item">
+              <div *ngFor="let seletedItem of seletedItems; let i = index" class="side-grid-selected-item">
                 <div class="menu-data">
                   <div class="title">
-                    HOT. 우도 올데이 땅콩 라테
+                      {{seletedItem.title}}
                   </div>
                   <div class="pmp">
-                      <ion-icon md="md-add-circle" color="side-add-button"></ion-icon>
-                      <span class="cnt">1</span>
-                      <ion-icon md="md-remove-circle" color="side-add-button"></ion-icon>
-                      <span class="price">5,000원</span>
+                      <ion-icon md="md-add-circle" color="side-add-button" (click)="addCount(seletedItem)"></ion-icon>
+                      <span class="cnt">{{seletedItem.count}}</span>
+                      <ion-icon md="md-remove-circle" color="side-add-button" (click)="minCount(seletedItem)"></ion-icon>
+                      <span class="price">{{seletedItem.price}}원</span>
                   </div>
                 </div>
-                <div class="close"><ion-icon md="md-close" color="light"></ion-icon></div>
-              </div>
-
-              <div class="side-grid-selected-item">
-                <div class="menu-data">
-                  <div class="title">
-                    HOT. 우도 올데이 땅콩 라테
-                  </div>
-                  <div class="pmp">
-                      <ion-icon md="md-add-circle" color="side-add-button"></ion-icon>
-                      <span class="cnt">1</span>
-                      <ion-icon md="md-remove-circle" color="side-add-button"></ion-icon>
-                      <span class="price">5,000원</span>
-                  </div>
-                </div>
-                <div class="close"><ion-icon md="md-close" color="light"></ion-icon></div>
-              </div>
-
-              <div class="side-grid-selected-item">
-                <div class="menu-data">
-                  <div class="title">
-                    HOT. 우도 올데이 땅콩 라테
-                  </div>
-                  <div class="pmp">
-                      <ion-icon md="md-add-circle" color="side-add-button"></ion-icon>
-                      <span class="cnt">1</span>
-                      <ion-icon md="md-remove-circle" color="side-add-button"></ion-icon>
-                      <span class="price">5,000원</span>
-                  </div>
-                </div>
-                <div class="close"><ion-icon md="md-close" color="light"></ion-icon></div>
+                <div class="close"><ion-icon md="md-close" color="light" (click)="dropItem(i)"></ion-icon></div>
               </div>
 
             </ion-col>
@@ -296,12 +120,12 @@
             <ion-col>
               <div class="side-grid-menu">
                 <div class="side-grid-menu-text">총 주문수량</div>
-                <div class="side-grid-menu-cp"><span>8</span>개</div>
+                <div class="side-grid-menu-cp"><span>{{totalCnt}}</span>개</div>
                 <div class="side-grid-menu-text">총 주문금액</div>
-                <div class="side-grid-menu-cp"><span>14,000</span>원</div>
+                <div class="side-grid-menu-cp"><span>{{totalPrice}}</span>원</div>
               </div>
               <div class="side-cancel-button">
-                  <button ion-button color="side-cancel-button">전체취소</button>  
+                  <button ion-button color="side-cancel-button" (click)="emptySeleted()">전체취소</button>  
               </div>
               <div class="side-buttom-button">
                   <button ion-button color="side-buttom-button">신용카드<br/>결제</button>
