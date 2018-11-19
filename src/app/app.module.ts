@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { HttpInterceptorProvider } from '../providers/http-interceptor/http-interceptor';
+//import { HttpInterceptorProvider } from '../providers/http-interceptor/http-interceptor';
 
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,7 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HttpInterceptorProvider
+    //HttpInterceptorProvider
   ]
 })
 export class AppModule {}

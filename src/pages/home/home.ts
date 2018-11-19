@@ -115,6 +115,8 @@ export class HomePage {
     console.log(this.items.length);
     */
 
+    //웹소켓 오픈
+    this.openWebsocket();
   }
 
   //메뉴를 선택하여 사이드 장바구니에 추가
@@ -185,4 +187,53 @@ export class HomePage {
     this.totalCnt = tc;
     this.totalPrice = tp;
   }
+
+  //신용카드계산
+  payment(){
+    if(this.seletedItems.length <= 0){
+      alert("주문내역 없음");
+      return;
+    }
+
+    let sendVal = new Array;
+    sendVal.push({
+      "id" : "ADMIN",
+      "param" : this.seletedItems
+    });
+    console.log(JSON.stringify(sendVal));
+    
+    //전송
+    this.webSocket.send(JSON.stringify(sendVal));
+
+    alert("주문완료");
+    
+    //주문내역 초기화
+    this.emptySeleted();
+    this.items.forEach(item => {
+      item.select = "";
+    });
+  }
+
+  //WebSocket 오픈
+  webSocket : WebSocket;
+  openWebsocket(){
+    this.webSocket  = new WebSocket("ws://110.45.199.181:8002/WS?token=MY_STORE&id=KIOSK_01");
+    
+    this.webSocket.onopen = function(message){
+      console.log("===== OPEN =====");
+    }
+
+    this.webSocket.onclose = function(message){
+      console.log("===== CLOSE =====");
+    }
+
+    this.webSocket.onerror = function(message){
+      console.log("!!!!! Error !!!!!");
+    }
+
+    this.webSocket.onmessage = function(message){
+      console.log("receive data : " + message.data);
+    }
+  }
+
 }
