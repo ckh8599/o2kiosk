@@ -185,4 +185,14 @@ export class HomePage {
     this.totalCnt = tc;
     this.totalPrice = tp;
   }
+
+  //신용카드 결제
+  payCredit(){
+    console.info(this.seletedItems);
+  }
+
+  //이비 결제
+  payEb(){
+    console.info(this.seletedItems);
+  }
 }

@@ -111,7 +111,7 @@
                       <span class="price">{{seletedItem.price}}원</span>
                   </div>
                 </div>
-                <div class="close"><ion-icon md="md-close" color="light" (click)="dropItem(i)"></ion-icon></div>
+                <div class="close"><ion-icon md="md-close" color="header-back" (click)="dropItem(i)"></ion-icon></div>
               </div>
 
             </ion-col>
@@ -128,8 +128,8 @@
                   <button ion-button color="side-cancel-button" (click)="emptySeleted()">전체취소</button>  
               </div>
               <div class="side-buttom-button">
-                  <button ion-button color="side-buttom-button">신용카드<br/>결제</button>
-                  <button ion-button color="side-buttom-button">이비카드<br/>결제</button>
+                  <button ion-button color="side-buttom-button" (click)="payCredit()">신용카드<br/>결제</button>
+                  <button ion-button color="side-buttom-button" (click)="payEb()">이비카드<br/>결제</button>
               </div>
             </ion-col>
           </ion-row>
