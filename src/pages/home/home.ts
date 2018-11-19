@@ -188,8 +188,8 @@ export class HomePage {
     this.totalPrice = tp;
   }
 
-  //신용카드계산
-  payment(){
+  //신용카드 결제
+  payCredit(){
     if(this.seletedItems.length <= 0){
       alert("주문내역 없음");
       return;
@@ -214,6 +214,11 @@ export class HomePage {
     });
   }
 
+  //이비 결제
+  payEb(){
+    console.info(this.seletedItems);
+  }
+  
   //WebSocket 오픈
   webSocket : WebSocket;
   openWebsocket(){
@@ -235,5 +240,4 @@ export class HomePage {
       console.log("receive data : " + message.data);
     }
   }
-
 }
