@@ -195,23 +195,24 @@ export class HomePage {
       return;
     }
 
-    let sendVal = new Array;
-    sendVal.push({
+    //전송정보 입력
+    let sendVal = {
       "id" : "ADMIN",
-      "param" : this.seletedItems
-    });
-    console.log(JSON.stringify(sendVal));
+      "param" : {
+        "type" : "ORDER",
+        "items" : this.seletedItems
+      }
+    };
+    //console.log(JSON.stringify(sendVal));
+    let sendJSON = JSON.stringify(sendVal);
     
-    //전송
-    this.webSocket.send(JSON.stringify(sendVal));
-
-    alert("주문완료");
-    
-    //주문내역 초기화
-    this.emptySeleted();
-    this.items.forEach(item => {
-      item.select = "";
-    });
+    //전송 (웹소켓 미연결 시 연결시도 후 전송처리)
+    if(this.webSocket.readyState == this.webSocket.OPEN){
+      this.webSocket.send(sendJSON);
+    }else{
+      console.log("재연결 시도중...");
+      this.reopenAndSend(sendJSON);
+    }
   }
 
   //이비 결제
@@ -224,20 +225,57 @@ export class HomePage {
   openWebsocket(){
     this.webSocket  = new WebSocket("ws://110.45.199.181:8002/WS?token=MY_STORE&id=KIOSK_01");
     
-    this.webSocket.onopen = function(message){
-      console.log("===== OPEN =====");
+    this.webSocket.onopen = function(event){
+      console.log("["+ event.type +"] connected!");
     }
 
-    this.webSocket.onclose = function(message){
-      console.log("===== CLOSE =====");
+    this.webSocket.onclose = function(event){
+      console.log("["+ event.type +"] disconnected!");
     }
 
-    this.webSocket.onerror = function(message){
-      console.log("!!!!! Error !!!!!");
+    this.webSocket.onerror = function(event){
+      console.log("["+ event.type +"]");
     }
 
-    this.webSocket.onmessage = function(message){
-      console.log("receive data : " + message.data);
+    this.webSocket.onmessage = (event) => {
+      console.log("["+ event.type +"] " + event.data);
+
+      let data = JSON.parse(event.data);
+      if(data.code == "0"){
+        //성공
+        alert("주문완료");
+
+        //주문내역 초기화
+        this.emptySeleted();
+        this.items.forEach(item => {
+          item.select = "";
+        });
+      }else{
+        //에러
+        alert(data.msg);
+        return;
+      }
     }
+  }
+
+  //웹소켓 재오픈 및 전송
+  async reopenAndSend(sendJSON){
+    //웹소켓 오픈
+    this.openWebsocket();
+
+    let pendingTime = 0;
+    while(this.webSocket.readyState != WebSocket.OPEN){
+      await this.sleep(1);
+      ++pendingTime;
+    }
+    console.log("재연결 완료 : " + pendingTime + "밀리세컨트 걸림.");
+    
+    //전송처리
+    this.webSocket.send(sendJSON);
+  }
+
+  //대기상태
+  sleep(time){
+    return new Promise(resolve => setTimeout(resolve, time));
   }
 }
