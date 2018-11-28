@@ -234,7 +234,7 @@ export class HomePage {
     }
 
     this.webSocket.onerror = function(event){
-      console.log("["+ event.type +"]");
+      console.log("["+ event.type +"] failed!");
     }
 
     this.webSocket.onmessage = (event) => {
