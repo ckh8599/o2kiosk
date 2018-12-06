@@ -128,8 +128,8 @@
                   <button ion-button color="side-cancel-button" (click)="emptySeleted()">전체취소</button>  
               </div>
               <div class="side-buttom-button">
-                  <button ion-button color="side-buttom-button" (click)="payCredit()">신용카드<br/>결제</button>
-                  <button ion-button color="side-buttom-button" (click)="payEb()">이비카드<br/>결제</button>
+                  <button ion-button color="side-buttom-button" (click)="payCredit()" disabled="{{btnCreditDisabled}}">신용카드<br/>결제</button>
+                  <button ion-button color="side-buttom-button" (click)="payEb()" disabled="{{btnEbDisabled}}">이비카드<br/>결제</button>
               </div>
             </ion-col>
           </ion-row>

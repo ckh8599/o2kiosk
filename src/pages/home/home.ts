@@ -4,6 +4,8 @@ import { NavController } from 'ionic-angular';
 import { Item } from '../../properties/Item';
 import { SeletedItem } from '../../properties/SeletedItem';
 
+import { setWsHeartbeat } from "ws-heartbeat/client";
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -18,6 +20,9 @@ export class HomePage {
 
   totalCnt: number;
   totalPrice: number;
+
+  btnCreditDisabled: string;
+  btnEbDisabled: string;
 
   constructor(public navCtrl: NavController) {
 
@@ -117,6 +122,10 @@ export class HomePage {
 
     //웹소켓 오픈
     this.openWebsocket();
+
+    //결제요청 버튼상태 초기화
+    this.btnCreditDisabled = "";
+    this.btnEbDisabled = "";
   }
 
   //메뉴를 선택하여 사이드 장바구니에 추가
@@ -190,11 +199,18 @@ export class HomePage {
 
   //신용카드 결제
   payCredit(){
+    //인터넷미연결 시 알림
+    if(!navigator.onLine){
+      alert("인터넷 연결상태 불량");
+      return;
+    }
+
+    //주문내역 없을 경우
     if(this.seletedItems.length <= 0){
       alert("주문내역 없음");
       return;
     }
-
+    
     //전송정보 입력
     let sendVal = {
       "id" : "ADMIN",
@@ -206,6 +222,10 @@ export class HomePage {
     //console.log(JSON.stringify(sendVal));
     let sendJSON = JSON.stringify(sendVal);
     
+    //전송 전 요청버튼 비활성화 처리
+    this.btnCreditDisabled = "disabled";
+    this.btnEbDisabled = "disabled";
+
     //전송 (웹소켓 미연결 시 연결시도 후 전송처리)
     if(this.webSocket.readyState == this.webSocket.OPEN){
       this.webSocket.send(sendJSON);
@@ -223,14 +243,17 @@ export class HomePage {
   //WebSocket 오픈
   webSocket : WebSocket;
   openWebsocket(){
-    this.webSocket  = new WebSocket("ws://110.45.199.181:8002/WS?token=MY_STORE&id=KIOSK_01");
+    this.webSocket = new WebSocket("ws://110.45.199.181:8002/WS?token=MY_STORE&id=KIOSK_01");
     
     this.webSocket.onopen = function(event){
       console.log("["+ event.type +"] connected!");
     }
 
-    this.webSocket.onclose = function(event){
+    this.webSocket.onclose = (event) => {
       console.log("["+ event.type +"] disconnected!");
+
+      //5초 후 자동 재연결시도 (실패시 다시 호출되므로 5초에 한번씩 연결시도함.)
+      setTimeout(this.openWebsocket(), 5000);
     }
 
     this.webSocket.onerror = function(event){
@@ -250,19 +273,37 @@ export class HomePage {
         this.items.forEach(item => {
           item.select = "";
         });
+      }else if(data.code == "100"){
+        //pong 반환완료
+        return;
       }else{
         //에러
         alert(data.msg);
         return;
       }
+
+      //ping-pong이 아닌 요청완료일 경우 (성공&오류 포함)
+      if(data.code != "100"){
+        //완료 후 요청버튼 초기화
+        this.btnCreditDisabled = "";
+        this.btnEbDisabled = "";
+      }
     }
+    
+    //ping-pong
+    setWsHeartbeat(this.webSocket, "ping", {
+      pingTimeout: 60000, // 60초동안 서버로부터 응답이 없으면 연결종료 처리
+      pingInterval: 30000 // 매 30초마다 ping 메시지를 서버에 전송
+    });
   }
 
   //웹소켓 재오픈 및 전송
   async reopenAndSend(sendJSON){
+    //웹소켓 ping-pong으로 5초에 한번씩 웹소켓 오픈 요청중이므로 주석처리
     //웹소켓 오픈
-    this.openWebsocket();
+    //this.openWebsocket();
 
+    //연결후 바로 전송 시 연결중 상태로 전송이 도지 않으므로 연결이 완료될때까지 기다림.
     let pendingTime = 0;
     while(this.webSocket.readyState != WebSocket.OPEN){
       await this.sleep(1);
