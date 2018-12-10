@@ -253,7 +253,9 @@ export class HomePage {
       console.log("["+ event.type +"] disconnected!");
 
       //5초 후 자동 재연결시도 (실패시 다시 호출되므로 5초에 한번씩 연결시도함.)
-      setTimeout(this.openWebsocket(), 5000);
+      setTimeout(() => {
+        this.openWebsocket();
+      }, 5000);
     }
 
     this.webSocket.onerror = function(event){
@@ -264,6 +266,15 @@ export class HomePage {
       console.log("["+ event.type +"] " + event.data);
 
       let data = JSON.parse(event.data);
+      
+      //ping-pong이 아닌 요청완료일 경우 (성공&오류 포함)
+      if(data.code != "100"){
+        //완료 후 요청버튼 초기화
+        this.btnCreditDisabled = "";
+        this.btnEbDisabled = "";
+      }
+
+      //데이터처리
       if(data.code == "0"){
         //성공
         alert("주문완료");
@@ -280,13 +291,6 @@ export class HomePage {
         //에러
         alert(data.msg);
         return;
-      }
-
-      //ping-pong이 아닌 요청완료일 경우 (성공&오류 포함)
-      if(data.code != "100"){
-        //완료 후 요청버튼 초기화
-        this.btnCreditDisabled = "";
-        this.btnEbDisabled = "";
       }
     }
     
