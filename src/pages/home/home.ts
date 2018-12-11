@@ -245,6 +245,9 @@ export class HomePage {
   openWebsocket(){
     this.webSocket = new WebSocket("ws://110.45.199.181:8002/WS?token=MY_STORE&id=KIOSK_01");
     
+    //웹소켓 연결시간에 일정시간 이상 소요되면 연결끊기
+    this.connectionTimeOut();
+
     this.webSocket.onopen = function(event){
       console.log("["+ event.type +"] connected!");
     }
@@ -322,5 +325,26 @@ export class HomePage {
   //대기상태
   sleep(time){
     return new Promise(resolve => setTimeout(resolve, time));
+  }
+
+  //웹소켓 연결시간 초과확인 (10초)
+  async connectionTimeOut() {
+    let time = 0;
+    let interval = setInterval(() => {
+      if(this.webSocket.readyState == WebSocket.CONNECTING){
+        ++time;
+        console.log(time);
+
+        if(time > 10){
+          console.log("over 10 sec!");
+          if(this.webSocket.readyState == WebSocket.CONNECTING){
+            this.webSocket.close();
+          }
+          clearInterval(interval); 
+        }
+      }else{
+        clearInterval(interval);
+      }
+    }, 1000);
   }
 }
