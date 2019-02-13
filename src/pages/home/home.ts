@@ -214,6 +214,7 @@ export class HomePage {
     //전송정보 입력
     let sendVal = {
       "id" : "ADMIN",
+      "token" : "MY_STORE",
       "param" : {
         "type" : "ORDER",
         "items" : this.seletedItems
